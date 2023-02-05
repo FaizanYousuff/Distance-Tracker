@@ -1,0 +1,7 @@
+<resources>
+
+<!--     SHA1: 74:56:B1:71:80:45:17:44:0C:D0:65:5C:9F:4B:9B:36:EA:B8:C7:28-->
+
+
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAfVD7ismyUI8k8T4E1SG6RJhCxACayGgw</string>
+</resources>

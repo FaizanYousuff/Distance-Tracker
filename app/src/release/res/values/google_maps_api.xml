@@ -1,0 +1,31 @@
+<resources>
+
+<!--     Creation date: 16-Nov-2022
+Entry type: PrivateKeyEntry
+Certificate chain length: 1
+Certificate[1]:
+Owner: CN=Faizan Yousuff
+Issuer: CN=Faizan Yousuff
+Serial number: 3aad0b35
+Valid from: Wed Nov 16 12:05:51 IST 2022 until: Fri Nov 08 12:05:51 IST 2052
+Certificate fingerprints:
+         SHA1: 4E:68:13:35:D1:A5:FE:E7:B2:D5:7A:6E:0A:36:E2:A5:00:8D:C8:17
+         SHA256: 62:A2:64:60:56:D2:67:6B:92:CE:F0:D0:CB:0C:63:2D:2F:08:9B:96:06:C4:F0:41:35:F3:96:62:51:3A:78:C9
+Signature algorithm name: SHA256withRSA
+Subject Public Key Algorithm: 2048-bit RSA key
+Version: 3
+
+Extensions:
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: E3 84 26 7E DF C1 4A E8   F2 93 70 68 FA 4B D5 E1  ..&...J...ph.K..
+0010: 1A 95 14 D7                                        ....
+]
+]
+ -->
+    
+    
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAfVD7ismyUI8k8T4E1SG6RJhCxACayGgw</string>
+</resources>
