@@ -43,12 +43,13 @@ class ResultFragment : BottomSheetDialogFragment() {
     }
 
     private fun shareResults() {
-        val shareIntent = Intent().apply {
+        /*val shareIntent = Intent().apply {
             action = Intent.ACTION_SEND
             type = "text/plain"
             putExtra(Intent.EXTRA_TEXT,"I covered  ${args.result.distance}km in ${args.result.time}")
         }
-        startActivity(shareIntent)
+        startActivity(shareIntent)*/
+        dismiss()
     }
 
     override fun onDestroyView() {

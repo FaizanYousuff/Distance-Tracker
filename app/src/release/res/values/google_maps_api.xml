@@ -25,7 +25,7 @@ KeyIdentifier [
 ]
 ]
  -->
-    
-    
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAfVD7ismyUI8k8T4E1SG6RJhCxACayGgw</string>
+
+
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">YOUR KEY HERE</string>
 </resources>
