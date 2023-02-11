@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "896841900452",
+    "project_id": "distance-tracker-b0ec7",
+    "storage_bucket": "distance-tracker-b0ec7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896841900452:android:1914492d90173c543aa131",
+        "android_client_info": {
+          "package_name": "com.mfy.distancetracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896841900452-qnvmo4nkofkhpp9mifopgjogso0tj90q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtvoRsuuNiUYRraK620p9fRezS2ZusrhU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896841900452-qnvmo4nkofkhpp9mifopgjogso0tj90q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

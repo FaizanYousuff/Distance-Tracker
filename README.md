@@ -1,16 +1,18 @@
 # Distance tracker
 
+ - This app will be called Distance Tracker, and as the name suggests, we will create an app which will be able to track our users location and track the distance which user travels. 
+ - Our application will use Foreground Service and it will track users location even from a background when we kill our app. Bottom line, you will be able to  track how many kilometers have you traveled and how much time it took.
+ 
 
--- Background location permission
+Android concepts used while developing this app
 
-If our app is running android 10 or higher we need to declare this permission in manifest file,
-in previous version this background permission was not required if we are declaring Coarse or Fine location
+* Google Maps SDK for Android
+* My Location Layer on Google Maps
+* Customizing maps like drawing Polylines ,Markers, Controls, gestures , Camera Position, animating Camera .
+* Easy Permissions Library Foreground Service, Location Permissions, Background Permissions
+* Creating Notification an d Push Notification Updates
+* Connecting the Project with Google Cloud Platform
+* Securing Google maps api Key
+* Navigation Component,Data Binding, Dependency Injection, Dagger-Hilt and Many more Google Maps API .
 
-
-- Service is an application component that perform long running operation in background and this does not require user interface
-
-1) Foreground - It perform some operation that is noticeable to user via notification like playing audio file
-                 This notification will be visible even if user is in some other app m this cannot be dismissed unless user stops
-2) Background - It Performs operation that is not directly noticed by user
-3) Bound   - This offers client sever interface , it allows to interact with service these run as long as another application component is bound to it
 
