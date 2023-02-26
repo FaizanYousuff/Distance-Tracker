@@ -13,7 +13,7 @@
         <action
             android:id="@+id/action_permissionsFragment_to_mapsFragment"
             app:destination="@id/mapsFragment"
-            app:popUpTo="@id/mapsFragment"
+            app:popUpTo="@id/permissionsFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment

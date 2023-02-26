@@ -14,9 +14,9 @@ object Permissions {
         EasyPermissions.hasPermissions(context,Manifest.permission.ACCESS_FINE_LOCATION)
 
 
-    fun requestLocationPermission(fragment: Fragment) {
+    fun requestLocationPermission(fragment: Fragment, rationalText: String) {
         EasyPermissions.requestPermissions(fragment,
-            "This application cannot work without location permission",
+            rationalText,
             PERMISSION_LOCATION_REQUEST_CODE,
             Manifest.permission.ACCESS_FINE_LOCATION)
     }
@@ -31,12 +31,11 @@ object Permissions {
         return true
     }
 
-    fun requestBackgroundPermission(fragment: Fragment){
+    fun requestBackgroundPermission(fragment: Fragment,rationalText : String ){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
             EasyPermissions.requestPermissions(
                 fragment,
-                "Background Permission is essential for this application." +
-                        " Without this we will not be able to provide with our service",
+                rationalText,
                 BACKGROUND_LOCATION_PERMISSION_REQUEST_CODE,
                 Manifest.permission.ACCESS_BACKGROUND_LOCATION
 

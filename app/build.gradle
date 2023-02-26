@@ -14,16 +14,16 @@ plugins {
 
 android {
     namespace 'com.mfy.distancetracker'
-    compileSdkVersion 32
+    compileSdkVersion 33
     buildToolsVersion "30.0.0"
 
     defaultConfig {
         applicationId "com.mfy.distancetracker"
         minSdkVersion 21
-        targetSdkVersion 32
-        versionCode 1
-        versionName "1.0"
-
+        targetSdkVersion 33
+        versionCode 4
+        versionName "1.1"
+        setProperty("archivesBaseName", "DistanceTracker_V." + versionCode + "(" + versionName + ")_"+new Date().format('yyMMdd'))
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
@@ -96,4 +96,8 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    // Splash screen
+    implementation "androidx.core:core-splashscreen:1.0.0"
+
 }

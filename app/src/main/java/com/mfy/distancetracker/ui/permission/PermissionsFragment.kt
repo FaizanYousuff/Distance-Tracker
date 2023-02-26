@@ -30,7 +30,7 @@ class PermissionsFragment : Fragment(),EasyPermissions.PermissionCallbacks {
             if(hasLocationPermission(requireActivity())){
                 findNavController().navigate(R.id.action_permissionsFragment_to_mapsFragment)
             } else {
-                requestLocationPermission(this)
+                requestLocationPermission(this,getString(R.string.location_permission_rationale))
             }
         }
         return binding.root
@@ -40,7 +40,7 @@ class PermissionsFragment : Fragment(),EasyPermissions.PermissionCallbacks {
         if(EasyPermissions.permissionPermanentlyDenied(this,perms[0])){
             SettingsDialog.Builder(requireActivity()).build().show()
         } else {
-            requestLocationPermission(this)
+            requestLocationPermission(this,getString(R.string.location_permission_rationale))
         }
     }
 

@@ -1,34 +1,31 @@
 package com.mfy.distancetracker.ui.maps
 
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
-import androidx.fragment.app.Fragment
-
+import android.location.LocationManager
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.ButtCap
-import com.google.android.gms.maps.model.JointType
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.maps.model.Polyline
-import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.gms.maps.model.*
 import com.mfy.distancetracker.R
 import com.mfy.distancetracker.databinding.FragmentMapsBinding
 import com.mfy.distancetracker.service.TrackerService
@@ -46,11 +43,13 @@ import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+
 class MapsFragment : Fragment() , OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener , EasyPermissions.PermissionCallbacks,
      GoogleMap.OnMarkerClickListener {
 
     private lateinit var binding: FragmentMapsBinding
     private lateinit var map : GoogleMap
+    private val LOCATION_REQUEST_CODE = 2
 
     private var locationList = mutableListOf<LatLng>()
     private var polylineList = mutableListOf<Polyline>()
@@ -89,6 +88,7 @@ class MapsFragment : Fragment() , OnMapReadyCallback, GoogleMap.OnMyLocationButt
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
+        checkGps(context!!)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -140,13 +140,18 @@ class MapsFragment : Fragment() , OnMapReadyCallback, GoogleMap.OnMyLocationButt
     }
 
     private fun onStartButtonClicked(){
+        // Check GPS / Locationed enabled
+        if(!checkGps(context!!)) return
+
+
+        // Check and request for Background permission
         if(hasBackgroundPermission(requireContext())){
             binding.startButton.disable()
             binding.startButton.hide()
             binding.stopButton.show()
             startCountDownTimer()
         } else {
-            requestBackgroundPermission(this)
+            requestBackgroundPermission(this ,getString(R.string.background_permission_rationale))
         }
     }
 
@@ -210,7 +215,7 @@ class MapsFragment : Fragment() , OnMapReadyCallback, GoogleMap.OnMyLocationButt
         if(EasyPermissions.somePermissionPermanentlyDenied(this,perms)){
             SettingsDialog.Builder(requireContext()).build()
         } else {
-            requestBackgroundPermission(this)
+            requestBackgroundPermission(this ,getString(R.string.background_permission_rationale))
         }
     }
 
@@ -353,6 +358,40 @@ class MapsFragment : Fragment() , OnMapReadyCallback, GoogleMap.OnMyLocationButt
     override fun onMarkerClick(marker: Marker): Boolean {
         // overriding default behaviour of marker click and avoiding camera position moving
         return true
+    }
+
+    fun checkGps(context: Context) : Boolean {
+        val manager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
+        if (!manager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            buildAlertMessageNoGps(context)
+            return false
+        }
+        return true;
+    }
+
+    private fun buildAlertMessageNoGps(context: Context) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        builder.setMessage("Your GPS/ Location  seems to be disabled, do you want to enable it?")
+            .setCancelable(false)
+            .setPositiveButton("Yes",
+                DialogInterface.OnClickListener { dialog, id -> startActivityForResult(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS),LOCATION_REQUEST_CODE) })
+            .setNegativeButton("No",
+                DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
+        val alert: AlertDialog = builder.create()
+        alert.show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (LOCATION_REQUEST_CODE == requestCode) {
+            if(Activity.RESULT_OK == resultCode){
+                //user clicked OK, you can startUpdatingLocation(...);
+
+
+            } else {
+                //user clicked cancel: informUserImportanceOfLocationAndPresentRequestAgain();
+            }
+        }
     }
 
 }
